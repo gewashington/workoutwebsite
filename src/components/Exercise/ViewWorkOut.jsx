@@ -5,10 +5,17 @@
 /* eslint import/no-named-as-default: 0 */
 
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom';
 
-export default class ViewWorkout extends React.Component {
+class ViewWorkout extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  handleBack = (e) => {
+    e.preventDefault
+    this.props.history.goBack()
+
   }
 
 
@@ -21,7 +28,11 @@ export default class ViewWorkout extends React.Component {
         <p>{(Object.keys(workout.exercises).map(key =>
         `${key} : ${workout.exercises[key]} `))}
         </p>
+        <button>Perform?</button>
+        <button onClick={this.handleBack}>Back</button>
       </div>
     );
   }
 }
+
+export default withRouter(ViewWorkout);
