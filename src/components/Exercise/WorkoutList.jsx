@@ -13,7 +13,7 @@ const WorkoutList = ({ workouts }) => (
     {workouts.map(workout => (
       <li>
         <Link to={`/workout/${workout.id}`}>
-          {workout.name}
+          {workout.name} : {workout.id}
         </Link>
       </li>
     ))}

@@ -24,12 +24,14 @@ export default class ExerciseContainer extends React.Component {
 
   renderViewWorkout = (props) => {
     const { id } = props.match.params;
-    const workout = workoutAPI.getOneWorkout(id);
+    const workout = workoutAPI.getOneWorkout(Number(id));
+    console.log('id:', id)
+    console.log('workout:', workout)
     if (!workout) {
       return <div>Could not find workout!</div>
     }
     else {
-      return <ViewWorkout />
+      return <ViewWorkout workout={workout} /> 
     }
   };
 

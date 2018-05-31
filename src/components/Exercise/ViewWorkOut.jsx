@@ -13,9 +13,14 @@ export default class ViewWorkout extends React.Component {
 
 
   render() {
+    console.log(this.props)
+    const { workout } = this.props;
     return (
       <div>
-      Hello
+        <p>{workout.name}</p>
+        <p>{(Object.keys(workout.exercises).map(key =>
+        `${key} : ${workout.exercises[key]} `))}
+        </p>
       </div>
     );
   }
