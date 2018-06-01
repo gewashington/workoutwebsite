@@ -1,27 +1,18 @@
 /* eslint react/prefer-stateless-function: 0 */
 /* eslint react/jsx-filename-extension: 0 */
 /* eslint  no-useless-constructor: 0 */
+/* eslint linebreak-style: 0 */
 
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Dashboard from './Dashboard';
 import './App.css';
 
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <Dashboard />
+  </div>
+);
 
 export default App;

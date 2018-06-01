@@ -3,7 +3,7 @@
 /* eslint  no-useless-constructor: 0 */
 /* eslint import/no-named-as-default-member: 0 */
 /* eslint import/no-named-as-default: 0 */
-
+/* eslint linebreak-style: 0 */
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import ExerciseContainer from './components/Exercise/ExerciseContainer';
@@ -11,6 +11,7 @@ import WorkoutGraph from './components/WorkoutGraphs';
 import WorkoutHistory from './components/WorkoutHistory';
 import Welcome from './components/Welcome';
 import './Dashboard.css';
+
 
 export default class Dashboard extends React.Component {
   constructor(props) {

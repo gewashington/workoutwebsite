@@ -5,7 +5,7 @@ const workouts = [{ id: 1, name: '5 x 5', exercises: { squats: 20, bench: 5 } },
 
 const getAllWorkouts = () => workouts;
 
-const getOneWorkout = id => { return workouts.find(workout => workout.id === id) };
+const getOneWorkout = (id) => workouts.find(workout => workout.id === id);
 
 export default {
   getAllWorkouts,
