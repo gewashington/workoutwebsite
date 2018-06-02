@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import WorkoutList from './WorkoutList';
 import ViewWorkout from './ViewWorkOut';
+import LogWorkout from './LogWorkout';
 import workoutAPI from './workoutAPI';
 
 //
