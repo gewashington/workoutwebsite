@@ -5,7 +5,7 @@
 /* eslint import/no-named-as-default: 0 */
 
 import React from 'react';
-import { withRouter, Link, Route, Switch } from 'react-router-dom';
+import { withRouter, Link  } from 'react-router-dom';
 import ExerciseContainer from './ExerciseContainer';
 import LogWorkout from './LogWorkout';
 
@@ -21,17 +21,6 @@ class ViewWorkout extends React.Component {
   handleBack = (e) => {
     e.preventDefault
     this.props.history.goBack()
-
-  }
-
-  performButtonClicked = (e) => {
-    this.setState({
-      performWorkout: true
-    })
-    console.log(this.state.performWorkout)
-    console.log('perform button clicked')
-    // this.props.history.push('/logworkout');
-    
   }
 
   render() {
@@ -44,7 +33,7 @@ class ViewWorkout extends React.Component {
         `${key} : ${workout.exercises[key]} `))}
         </p>
         <Link to={`/workout/logworkout/${workout.id}`}>
-        <button onClick={this.performButtonClicked}>Perform?</button>
+        <button>Perform?</button>
         </Link>
         <button onClick={this.handleBack}>Back</button>
       </div>

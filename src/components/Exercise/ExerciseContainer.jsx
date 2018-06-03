@@ -4,20 +4,14 @@ import { Route, Switch } from 'react-router-dom';
 import WorkoutList from './WorkoutList';
 import ViewWorkout from './ViewWorkOut';
 import LogWorkout from './LogWorkout';
+import WorkoutSummary from './WorkoutSummary';
 import workoutAPI from './workoutAPI';
-
-//
-// var WorkoutCards = React.createClass({
-//
-// })
 
 export default class ExerciseContainer extends React.Component {
   constructor(props) {
     super(props);
  
-
 };
-
 
   renderWorkoutList = () => {
     const  workouts  = workoutAPI.getAllWorkouts();
@@ -40,31 +34,36 @@ export default class ExerciseContainer extends React.Component {
   };
 
   renderLogWorkout = (props) => {
- const { id } = props.match.params
+    const { id } = props.match.params
     const workout = workoutAPI.getOneWorkout(Number(id));
       if (!workout) {
         return <div>Could not log workout!</div>
       }
       else {
-        return <LogWorkout workout={workout} /> 
+        return <LogWorkout workout={workout} onClick={this.renderWorkoutSummary} /> 
       }
   };
 
-  renderWorkoutSummary() {
-
+  renderWorkoutSummary = (props) => {
+    const { id } = props.match.params
+    const workout = workoutAPI.getOneWorkout(Number(id));
+      if (!workout) {
+        return <div>Could load workout summary</div>
+      }
+      else {
+        return <WorkoutSummary workout={workout}/> 
+      }
   };
 
-
-
   render() {
-    // let tempData = [ "5 x 5", "Madcow", "Boring But Big"]
     return (
       <div>
         <Switch>
           <Route exact path="/workout" render={this.renderWorkoutList} />
           <Route exact path="/workout/logworkout/:id" render={this.renderLogWorkout} />
+          <Route exact path="/workout/logworkout/workoutsummary/:id" render={this.renderWorkoutSummary} />
           <Route path="/workout/:id" render={this.renderViewWorkout} />
-        </Switch>
+          </Switch>
       </div>
     );
   }

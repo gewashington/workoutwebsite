@@ -6,10 +6,16 @@
 /* eslint linebreak-style: 0 */
 
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom';
 
 class LogWorkout extends React.Component {
   constructor(props) {
     super(props);
+  };
+
+  handleBackToLogWorkout = (e) => {
+    e.preventDefault
+    this.props.history.goBack()
   }
 
   render() {
@@ -17,9 +23,16 @@ class LogWorkout extends React.Component {
     return (
       <div>
         {workout.name}
+        <p>{(Object.keys(workout.exercises).map(key =>
+        `Exercise: ${key}, Reps: ${workout.exercises[key]} `))}
+        </p>
+        <Link to={`/workout/logworkout/workoutsummary/${workout.id}`}>
+          <button>Finished</button>
+        </Link>
+        <button onClick={this.handleBackToLogWorkout}>Back</button>
       </div>
     );
   }
 }
 
-export default LogWorkout;
+export default withRouter(LogWorkout);
