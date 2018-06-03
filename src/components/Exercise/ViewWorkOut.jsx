@@ -6,11 +6,16 @@
 
 import React from 'react';
 import { withRouter, Link, Route, Switch } from 'react-router-dom';
+import ExerciseContainer from './ExerciseContainer';
 import LogWorkout from './LogWorkout';
 
 class ViewWorkout extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      performWorkout: false
+    }
   }
 
   handleBack = (e) => {
@@ -19,6 +24,15 @@ class ViewWorkout extends React.Component {
 
   }
 
+  performButtonClicked = (e) => {
+    this.setState({
+      performWorkout: true
+    })
+    console.log(this.state.performWorkout)
+    console.log('perform button clicked')
+    // this.props.history.push('/logworkout');
+    
+  }
 
   render() {
     console.log(this.props)
@@ -29,12 +43,9 @@ class ViewWorkout extends React.Component {
         <p>{(Object.keys(workout.exercises).map(key =>
         `${key} : ${workout.exercises[key]} `))}
         </p>
-        <div>
-          <Link to="/workout/logworkout">Perform?</Link>
-          <Switch>
-            <Route exact path="/logworkout" component={props => <LogWorkout {...props} />} />
-          </Switch>
-        </div>
+        <Link to={`/workout/logworkout/${workout.id}`}>
+        <button onClick={this.performButtonClicked}>Perform?</button>
+        </Link>
         <button onClick={this.handleBack}>Back</button>
       </div>
     );

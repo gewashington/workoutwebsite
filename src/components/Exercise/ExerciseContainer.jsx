@@ -14,6 +14,7 @@ import workoutAPI from './workoutAPI';
 export default class ExerciseContainer extends React.Component {
   constructor(props) {
     super(props);
+ 
 
 };
 
@@ -26,23 +27,34 @@ export default class ExerciseContainer extends React.Component {
   renderViewWorkout = (props) => {
     const { id } = props.match.params;
     const workout = workoutAPI.getOneWorkout(Number(id));
+  
     console.log('id:', id)
     console.log('workout:', workout)
+ 
     if (!workout) {
       return <div>Could not find workout!</div>
     }
     else {
-      return <ViewWorkout workout={workout} /> 
+      return <ViewWorkout workout={workout} onClick={this.renderLogWorkout} />
     }
   };
 
-  renderLogWorkout() {
-
+  renderLogWorkout = (props) => {
+ const { id } = props.match.params
+    const workout = workoutAPI.getOneWorkout(Number(id));
+      if (!workout) {
+        return <div>Could not log workout!</div>
+      }
+      else {
+        return <LogWorkout workout={workout} /> 
+      }
   };
 
   renderWorkoutSummary() {
 
   };
+
+
 
   render() {
     // let tempData = [ "5 x 5", "Madcow", "Boring But Big"]
@@ -50,6 +62,7 @@ export default class ExerciseContainer extends React.Component {
       <div>
         <Switch>
           <Route exact path="/workout" render={this.renderWorkoutList} />
+          <Route exact path="/workout/logworkout/:id" render={this.renderLogWorkout} />
           <Route path="/workout/:id" render={this.renderViewWorkout} />
         </Switch>
       </div>

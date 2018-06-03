@@ -13,9 +13,10 @@ class LogWorkout extends React.Component {
   }
 
   render() {
+    const { workout } = this.props;
     return (
       <div>
-        This is logworkout component
+        {workout.name}
       </div>
     );
   }
