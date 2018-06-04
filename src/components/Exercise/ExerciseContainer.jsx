@@ -1,6 +1,7 @@
 //Make workout api to get list of workouts
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import * as firebase from 'firebase';
 import WorkoutList from './WorkoutList';
 import ViewWorkout from './ViewWorkOut';
 import LogWorkout from './LogWorkout';
@@ -10,8 +11,21 @@ import workoutAPI from './workoutAPI';
 export default class ExerciseContainer extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      workouts: {'empty' : 'empty'}
+    }
  
 };
+
+componentDidMount() {
+  let currentComponent = this //You have to cache reference to this outside of API call
+  const rootRef = firebase.database().ref('/Workoutlist').once('value').then( function(snapshot) {
+    currentComponent.setState({
+      workouts: snapshot.val()
+    }) 
+});
+}
 
   renderWorkoutList = () => {
     const  workouts  = workoutAPI.getAllWorkouts();
@@ -56,6 +70,7 @@ export default class ExerciseContainer extends React.Component {
   };
 
   render() {
+    console.log('current state:', this.state)
     return (
       <div>
         <Switch>
